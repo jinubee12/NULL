@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float speed = 3f;
     public float rotateSpeed = 0.0025f;
     public Rigidbody2D rb;
+    [SerializeField] public float attackDamage = 10f;
 
     private void Start()
     {
@@ -47,9 +48,13 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            LevelManager.manager.GameOver();
-            Destroy(other.gameObject);
-            target = null;
+            other.gameObject.GetComponent<Health>().UpdateHealth(-attackDamage);
+            if (other.gameObject.GetComponent<Health>().health == 0f)
+            {
+                LevelManager.manager.GameOver();
+                Destroy(other.gameObject);
+                target = null;
+            }
         }
     }
 }
