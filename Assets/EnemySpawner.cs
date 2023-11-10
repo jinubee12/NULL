@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 1f;
+
 
     [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private bool canSpawn = true;
     private void Start(){
-        StartCoroutine(Spawner());
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
     }
 
-    private IEnumerator Spawner(){
-        WaitForSeconds wait = new WaitForSeconds(spawnRate);
 
-        while(canSpawn){
-            yield return wait;
 
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        }
-    }
+    
 }
