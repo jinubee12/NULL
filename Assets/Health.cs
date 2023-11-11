@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 
     public float health = 0f;
     [SerializeField] private float maxHealth = 100f;
+    public HealthBar healthBar;
 
     private void Start()
     {
@@ -26,5 +27,6 @@ public class Health : MonoBehaviour
             health = 0f;
 
         }
+        healthBar.SetHealth(health);
     }
 }
