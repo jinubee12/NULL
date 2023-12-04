@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Wall
+  - weapon
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 109505103
+    locked: 0
+  - name: Weapon
+    uniqueID: 2942112285
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 3489868887
     locked: 0
