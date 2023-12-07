@@ -10,6 +10,11 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rb;
     [SerializeField] public float attackDamage = 10f;
 
+
+    public BossPattern[] patterns;
+    private float timeSinceLastPattern = 0f;
+    private float patternChangeInterval = 3f; // 패턴 변경 간격 (예: 3초)
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,7 +27,24 @@ public class Enemy : MonoBehaviour
         else
             RotateTowardsTarget();
 
+        timeSinceLastPattern += Time.deltaTime;
+
+        // 일정 간격으로 패턴 변경
+        if (timeSinceLastPattern >= patternChangeInterval)
+        {
+            ChangePattern();
+            timeSinceLastPattern = 0f; // 초기화
+        }
     }
+
+    private void ChangePattern()
+    {
+        // 현재 실행 중인 패턴을 완료한 후에 다음 패턴을 선택하고 실행
+        int selectedPatternIndex = Random.Range(0, patterns.Length);
+        BossPattern selectedPattern = patterns[selectedPatternIndex];
+        selectedPattern.ExecutePattern();
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = transform.up * speed;
@@ -40,8 +62,9 @@ public class Enemy : MonoBehaviour
     {
         Vector2 targetDir = target.position - transform.position;
         float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
-        Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
+
+        float step = rotateSpeed * Time.deltaTime * 70;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), step);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

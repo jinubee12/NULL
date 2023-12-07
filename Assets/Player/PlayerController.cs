@@ -50,10 +50,6 @@ public class PlayerController : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         weapon.SetTarget(mousePos);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            weapon.Fire();
-        }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
