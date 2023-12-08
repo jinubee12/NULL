@@ -15,9 +15,23 @@ public class Enemy : MonoBehaviour
     private float timeSinceLastPattern = 0f;
     private float patternChangeInterval = 3f; // 패턴 변경 간격 (예: 3초)
 
+    private SpriteRenderer spriteRenderer;
+    private Sprite enemySprite;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Sprite enemySprite = Resources.Load<Sprite>("generated_image");
+        Resources.UnloadAsset(enemySprite);
+        if (enemySprite != null)
+        {
+            spriteRenderer.sprite = enemySprite;
+        }
+        else
+        {
+            Debug.LogError("Failed to load enemy sprite!");
+        }
     }
 
     private void Update()
@@ -30,11 +44,13 @@ public class Enemy : MonoBehaviour
         timeSinceLastPattern += Time.deltaTime;
 
         // 일정 간격으로 패턴 변경
+        
         if (timeSinceLastPattern >= patternChangeInterval)
         {
             ChangePattern();
             timeSinceLastPattern = 0f; // 초기화
         }
+        
     }
 
     private void ChangePattern()
