@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.IO;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -15,10 +17,14 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Sprite enemySprite = Resources.Load<Sprite>("generated_image");
-        Resources.UnloadAsset(enemySprite);
-        if (enemySprite != null)
+
+        string imagePath = "Assets/Resources/generated_image.png"; // 이미지경로
+
+        //이미지 읽기
+        Texture2D texture = LoadTextureFromFile(imagePath);
+        if (texture != null)
         {
+            Sprite enemySprite = SpriteFromTexture(texture);
             spriteRenderer.sprite = enemySprite;
         }
         else
@@ -26,6 +32,24 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Failed to load enemy sprite!");
         }
     }
+
+    private Texture2D LoadTextureFromFile(string path)
+    {
+        byte[] fileData = File.ReadAllBytes(path);
+        Texture2D texture = new Texture2D(2, 2); 
+        texture.LoadImage(fileData); 
+        return texture;
+    }
+
+    private Sprite SpriteFromTexture(Texture2D texture)
+    {
+        Rect rect = new Rect(0, 0, texture.width, texture.height);
+        Sprite sprite = Sprite.Create(texture, rect, Vector2.one * 0.5f);
+        return sprite;
+    }
+
+
+
 
     private void Update()
     {
