@@ -133,7 +133,12 @@ namespace OpenAI
             }
             
             messages.Add(newMessage);
-            
+
+
+            //임시
+            Debug.Log(newMessage.Content);
+            //임시
+
             button.enabled = false;
             inputField.text = "";
             inputField.enabled = false;
@@ -154,6 +159,11 @@ namespace OpenAI
                 /////////////foundString에 생성하고자 하는 몬스터 아이디 저장//////////////
                 var result = message.Content;
 
+                //임시
+                Debug.Log(result);
+                
+                //
+
 
                 for (int i = 0; i <= 100; i++)
                 {
@@ -166,7 +176,7 @@ namespace OpenAI
                         string temp = searchString1.Substring(2);
                         fHPin = int.Parse(temp);
                         //Debug.Log(fHPin);
-                        break;
+                        
                     }
                     
                 }            
@@ -183,7 +193,7 @@ namespace OpenAI
                         string temp = searchString2.Substring(1);
                         fSPEEDin = int.Parse(temp);
                         //Debug.Log(fSPEEDin);
-                        break;
+                       
                     }
                     
                 }            
@@ -200,7 +210,7 @@ namespace OpenAI
                         string temp = searchString3.Substring(2);
                         fSTRONGin = int.Parse(temp);
                         //Debug.Log(fSTRONGin);
-                        break;
+                       
                     }
                     
                 }            
@@ -217,7 +227,7 @@ namespace OpenAI
                         string temp = searchString4.Substring(1);
                         fDEXin = int.Parse(temp);
                         //Debug.Log(fDEXin);
-                        break;
+                       
                     }
                     
                 }       
@@ -279,17 +289,6 @@ namespace OpenAI
                 AppendMessage(message);
                 ////////////////////////////////////////
 
-                ///메시지 띄우기
-                var me2 = new ChatMessage()
-                {
-                 Role = "AI",
-                 Content = "If you want to create a monster, please press the generate button. If you want a different monster, please provide new requirements."
-                };
-                AppendMessage(me2);
-                ///////////////////
-                ///
-
-                Debug.Log(message.Content);
 
 
                 //////이미지생성///////
@@ -319,6 +318,19 @@ namespace OpenAI
                     //////////////////////////////////////          
 
                 }
+
+
+                ///메시지 띄우기
+                var me2 = new ChatMessage()
+                {
+                    Role = "AI",
+                    Content = "If you want to create a monster, please press the generate button. If you want a different monster, please provide new requirements."
+                };
+                AppendMessage(me2);
+                ///////////////////
+                ///
+
+                Debug.Log(message.Content);
 
                 ///////////////////////////////
 
