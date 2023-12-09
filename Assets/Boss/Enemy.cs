@@ -1,19 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public Transform target;
     public float speed = 3f;
-    public float rotateSpeed = 0.0025f;
+    [SerializeField] private float rotateSpeed = 0.025f;
     public Rigidbody2D rb;
-    [SerializeField] public float attackDamage = 10f;
-
-
-    public BossPattern[] patterns;
-    private float timeSinceLastPattern = 0f;
-    private float patternChangeInterval = 3f; // 패턴 변경 간격 (예: 3초)
+    [SerializeField] private float attackDamage = 10f;
 
     private void Start()
     {
@@ -26,23 +19,6 @@ public class Enemy : MonoBehaviour
             GetTarget();
         else
             RotateTowardsTarget();
-
-        timeSinceLastPattern += Time.deltaTime;
-
-        // 일정 간격으로 패턴 변경
-        if (timeSinceLastPattern >= patternChangeInterval)
-        {
-            ChangePattern();
-            timeSinceLastPattern = 0f; // 초기화
-        }
-    }
-
-    private void ChangePattern()
-    {
-        // 현재 실행 중인 패턴을 완료한 후에 다음 패턴을 선택하고 실행
-        int selectedPatternIndex = Random.Range(0, patterns.Length);
-        BossPattern selectedPattern = patterns[selectedPatternIndex];
-        selectedPattern.ExecutePattern();
     }
 
     private void FixedUpdate()
@@ -71,11 +47,20 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Health>().UpdateHealth(-attackDamage);
-            if (other.gameObject.GetComponent<Health>().health == 0f)
+            DealDamageToPlayer(other.gameObject);
+        }
+    }
+
+    private void DealDamageToPlayer(GameObject player)
+    {
+        var playerHealth = player.GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.UpdateHealth(-attackDamage);
+            if (playerHealth.health == 0f)
             {
                 LevelManager.manager.GameOver();
-                Destroy(other.gameObject);
+                Destroy(player);
                 target = null;
             }
         }
