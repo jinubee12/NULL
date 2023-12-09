@@ -5526,6 +5526,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 6199170016856441765, guid: 343d0fc849bd83246affd9f64718f2f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+    - target: {fileID: 6199170016856441765, guid: 343d0fc849bd83246affd9f64718f2f6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.6313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199170016856441765, guid: 343d0fc849bd83246affd9f64718f2f6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199170016856441765, guid: 343d0fc849bd83246affd9f64718f2f6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199170016856441765, guid: 343d0fc849bd83246affd9f64718f2f6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8033247560585169660, guid: 343d0fc849bd83246affd9f64718f2f6, type: 3}
       propertyPath: patterns.Array.size
       value: 2
