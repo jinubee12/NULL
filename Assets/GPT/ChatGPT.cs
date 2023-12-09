@@ -294,7 +294,7 @@ namespace OpenAI
                 //////이미지생성///////
                 var response = await openai.CreateImage(new CreateImageRequest
                 {
-                    Prompt = "make an monster image. please do not include text in image" + inputField.text,
+                    Prompt = "make an monster image. Always set the background color to white. please do not include text in image. However, white should not be used for anything other than the background." + inputField.text,
                     Size = ImageSize.Size256
                 });
 

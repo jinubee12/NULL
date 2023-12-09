@@ -20,10 +20,22 @@ public class Enemy : MonoBehaviour
 
         string imagePath = "Assets/Resources/generated_image.png"; // 이미지경로
 
-        //이미지 읽기
         Texture2D texture = LoadTextureFromFile(imagePath);
         if (texture != null)
         {
+            //배경 투명하게 만들기
+            Color[] pixels = texture.GetPixels();
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                if (pixels[i].r >= 0.9f && pixels[i].g >= 0.9f && pixels[i].b >= 0.9f)
+                {
+                    pixels[i].a = 0;
+                }
+            }
+            texture.SetPixels(pixels);
+            texture.Apply();
+            //
+
             Sprite enemySprite = SpriteFromTexture(texture);
             spriteRenderer.sprite = enemySprite;
         }
@@ -47,7 +59,6 @@ public class Enemy : MonoBehaviour
         Sprite sprite = Sprite.Create(texture, rect, Vector2.one * 0.5f);
         return sprite;
     }
-
 
 
 
