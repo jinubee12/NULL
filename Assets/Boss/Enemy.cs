@@ -8,9 +8,23 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rb;
     [SerializeField] private float attackDamage = 10f;
 
+    private SpriteRenderer spriteRenderer;
+    private Sprite enemySprite;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Sprite enemySprite = Resources.Load<Sprite>("generated_image");
+        Resources.UnloadAsset(enemySprite);
+        if (enemySprite != null)
+        {
+            spriteRenderer.sprite = enemySprite;
+        }
+        else
+        {
+            Debug.LogError("Failed to load enemy sprite!");
+        }
     }
 
     private void Update()
@@ -20,6 +34,7 @@ public class Enemy : MonoBehaviour
         else
             RotateTowardsTarget();
     }
+
 
     private void FixedUpdate()
     {
