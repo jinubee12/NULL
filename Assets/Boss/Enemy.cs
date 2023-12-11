@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
             Color[] pixels = texture.GetPixels();
             for (int i = 0; i < pixels.Length; i++)
             {
-                if (pixels[i].r >= 0.9f && pixels[i].g >= 0.9f && pixels[i].b >= 0.9f)
+                if (pixels[i].r >= 0.85f && pixels[i].g >= 0.85f && pixels[i].b >= 0.85f)
                 {
                     pixels[i].a = 0;
                 }
