@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.IO;
-
+using OpenAI;
 
 public class Enemy : MonoBehaviour
 {
+    ChatGPT gpt;
+    public float speed = 3.0f;
     public Transform target;
-    public float speed = 3f;
+    
     [SerializeField] private float rotateSpeed = 0.025f;
     public Rigidbody2D rb;
     [SerializeField] private float attackDamage = 10f;
@@ -13,17 +15,22 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Sprite enemySprite;
 
+    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        gpt = new ChatGPT();
+        speed = gpt.fSPEEDin;
+        attackDamage = gpt.fSTRONGin;
 
-        string imagePath = "Assets/Resources/generated_image.png"; // 이미지경로
+        string imagePath = "Assets/Resources/generated_image.png"; // ??????????
 
         Texture2D texture = LoadTextureFromFile(imagePath);
         if (texture != null)
         {
-            //배경 투명하게 만들기
+            //???? ???????? ??????
             Color[] pixels = texture.GetPixels();
             for (int i = 0; i < pixels.Length; i++)
             {
