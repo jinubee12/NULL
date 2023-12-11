@@ -3,8 +3,7 @@ using System.IO;
 using OpenAI;
 
 public class Enemy : MonoBehaviour
-{
-    ChatGPT gpt;
+{ 
     public float speed = 3.0f;
     public Transform target;
     
@@ -21,7 +20,11 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        gpt = new ChatGPT();
+        ChatGPT gpt = FindObjectOfType<ChatGPT>();
+        if (gpt == null)
+        {
+            Debug.LogError("GPT ????? ?? ? ????");
+        }
         speed = gpt.fSPEEDin;
         attackDamage = gpt.fSTRONGin;
 

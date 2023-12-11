@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class DialogManager : MonoBehaviour
 {
+    public GameObject gpt;
     public void ChangeScene(string name)
     {
         SceneManager.LoadScene(name);
+        DontDestroyOnLoad(gpt);
     }
 }
