@@ -28,7 +28,8 @@ public class Enemy : MonoBehaviour
         speed = gpt.fSPEEDin;
         attackDamage = gpt.fSTRONGin;
 
-        string imagePath = "Assets/Resources/generated_image.png"; // ??????????
+        string imagePath = Application.dataPath + "/Resources" + "/generated_image.png";
+        //"Assets/Resources/generated_image.png"; // ??????????
 
         Texture2D texture = LoadTextureFromFile(imagePath);
         if (texture != null)
