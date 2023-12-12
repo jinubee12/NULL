@@ -165,7 +165,7 @@ namespace OpenAI
                 //
 
 
-                for (int i = 0; i <= 100; i++)
+                for (int i = 100; i <= 1000; i++)
                 {
                     string searchString1 = "hp" + i.ToString();
                     if (result.Contains(searchString1))
@@ -182,7 +182,7 @@ namespace OpenAI
                 }            
 
                 
-                for (int i = 0; i <= 10; i++)
+                for (int i = 5; i <= 30; i++)
                 {
                     string searchString2 = "s" + i.ToString();
                     if (result.Contains(searchString2))
@@ -199,7 +199,7 @@ namespace OpenAI
                 }            
 
                 
-                for (int i = 0; i <= 50; i++)
+                for (int i = 10; i <= 150; i++)
                 {
                     string searchString3 = "st" + i.ToString();
                     if (result.Contains(searchString3))
