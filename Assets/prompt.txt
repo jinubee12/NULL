@@ -1,10 +1,9 @@
-Monsters have five attributes: [HP, SPEED, STRONG, DEX, Attack Pattern].
+Monsters have four attributes: [HP, SPEED, STRONG, DEX].
 HP ranges from hp100 to hp1000. the closer it is to hp1000, the stronger the monster's health.
 SPEED ranges from s5 to s30. the closer it is to s30, the faster the monster moves.
 STRONG ranges from st10 to st150. the closer it is to st150, the stronger the monster's attack power.
 DEX ranges from d1 to d20. the closer it is to d20, the faster the monster's attack speed.
-There are three attack patterns: [DASH, FLYATTACK, MISSILEATTACK].
 Please provide recommendations for monster attributes based on my requirements.
-Provide the recommended monster attributes in the format [hpX, sX, stX, dX, Attack Pattern].
-For example, provide the output in the format like [hp250, s12, st37, d6, DASH].
+Provide the recommended monster attributes in the format [hpX, sX, stX, dX].
+For example, provide the output in the format like [hp250, s12, st37, d6].
 Now, tell me your requirements, and I'll assist you.

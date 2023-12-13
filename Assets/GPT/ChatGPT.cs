@@ -129,7 +129,7 @@ namespace OpenAI
                 newMessage.Content = prompt + "\n" + inputField.text; 
             }
             else {
-                newMessage.Content = "Please recommend monster attributes that match my current information and requirements for each attribute: [HP, SPEED, STRONG, DEX, Attack Pattern]. Provide the information in the format of [hpX, sX, stX, dX, Attack Pattern]. For example, provide the output in the format like [hp4, s2, st3, d4, DASH]. Now, I'll input the additional requirements from the user." + "\n" + inputField.text; 
+                newMessage.Content = "Please recommend monster attributes that match my current information and requirements for each attribute: [HP, SPEED, STRONG, DEX]. Provide the information in the format of [hpX, sX, stX, dX]. For example, provide the output in the format like [hp250, s12, st37, d6]. Now, I'll input the additional requirements from the user." + "\n" + inputField.text; 
             }
             
             messages.Add(newMessage);
@@ -232,26 +232,10 @@ namespace OpenAI
                     
                 }       
 
-                string searchString5 = "DASH";
-                if (result.Contains(searchString5))
-                {
-                    fPATTERN = searchString5;
-                }    
-                string searchString6 = "FLYATTACK";
-                if (result.Contains(searchString6))
-                {
-                    fPATTERN = searchString6;
-                }
-                string searchString7 = "MISSILEATTACK";
-                if (result.Contains(searchString7)) 
-                {
-                    fPATTERN = searchString7;
-                }
-
                 ////////////////////////////////////////////////////////////////////////////////
 
                 //Debug.Log("Found string: " + foundString);
-                Debug.Log("OK.\n" + "The information of the generated monster is" + fHP +" "+fSPEED +" "+fSTRONG +" "+fDEX +" "+fPATTERN +" " ); //콘솔창에는 GPT로 받은 결과 그대로 출력
+                Debug.Log("OK.\n" + "The information of the generated monster is" + " " + fHP +" "+fSPEED +" "+fSTRONG +" "+fDEX +" "); //콘솔창에는 GPT로 받은 결과 그대로 출력
 
                 ///////////최종결정 몬스터 화면출력 - 지정된 형태로 출력////////////////
                 message.Content = result;
