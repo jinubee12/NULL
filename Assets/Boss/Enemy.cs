@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed = 3.0f;
     public Transform target;
     
-    [SerializeField] private float rotateSpeed = 0.025f;
+    [SerializeField] private float rotateSpeed = 0.075f;
     public Rigidbody2D rb;
     [SerializeField] private float attackDamage = 10f;
 

@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    public static LevelManager manager;
-    public GameObject deathScreen;
     public GameObject pauseMenuUI;
-
-    private void Awake()
-    {
-        manager = this;
-    }
 
     void Update()
     {
@@ -31,19 +22,14 @@ public class LevelManager : MonoBehaviour
         // 시간 흐름을 일시 정지 또는 재개
         Time.timeScale = (pauseMenuUI.activeSelf) ? 0f : 1f;
     }
-    public void GameOver()
-    {
-        deathScreen.SetActive(true);
-    }
 
-    public void ReplayGame()
+    // 메뉴 씬으로 전환하는 함수
+    public void LoadMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void ClearScene(string name)
-    {
+        // Time.timeScale을 1로 설정하여 게임이 정상적으로 진행되도록 함
         Time.timeScale = 1f;
-        SceneManager.LoadScene(name);
+
+        // "MenuScene" 씬으로 전환
+        SceneManager.LoadScene("MenuScene");
     }
 }
