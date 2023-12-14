@@ -18,11 +18,7 @@ public class Health : MonoBehaviour
     {
         health += mod;
 
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
-        else if(health <= 0f)
+        if(health <= 0f)
         {
             health = 0f;
 

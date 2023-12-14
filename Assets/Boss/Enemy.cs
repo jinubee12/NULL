@@ -1,19 +1,23 @@
 using UnityEngine;
 using System.IO;
 using OpenAI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 { 
     public float speed = 3.0f;
     public Transform target;
     
-    [SerializeField] private float rotateSpeed = 0.075f;
+    [SerializeField] private float rotateSpeed = 2f;
     public Rigidbody2D rb;
     [SerializeField] private float attackDamage = 10f;
 
     private SpriteRenderer spriteRenderer;
     private Sprite enemySprite;
 
+    public Text hpUI;
+    public Text strongUI;
+    public Text speedUI;
     
 
     private void Start()
@@ -25,8 +29,11 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("GPT ????? ?? ? ????");
         }
+        Health health = GetComponent<Health>();
+        health.health = gpt.fHPin;
         speed = gpt.fSPEEDin;
         attackDamage = gpt.fSTRONGin;
+
 
         string imagePath = Application.dataPath + "/Resources" + "/generated_image.png";
         //"Assets/Resources/generated_image.png"; // ??????????
@@ -54,6 +61,10 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Failed to load enemy sprite!");
         }
+
+        hpUI.text = "HP : " + health.health;
+        strongUI.text = "STR : " + attackDamage;
+        speedUI.text = "SPEED : " + speed;
     }
 
     private Texture2D LoadTextureFromFile(string path)
